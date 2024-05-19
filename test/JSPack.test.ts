@@ -270,7 +270,7 @@ describe('JSPack', () => {
   test('Test pack wrong format', () => {
     const format = 20;
 
-    const wrongFormat = (): Uint8Array => JSPack.Pack(format, 0, JSPackEndianness.bigEndian);
+    const wrongFormat = (): Uint8Array => JSPack.Pack(format as any, 0, JSPackEndianness.bigEndian);
 
     expect(wrongFormat).toThrow(new Error(`Encode format '${format}' not found.`));
   });
@@ -278,7 +278,7 @@ describe('JSPack', () => {
   test('Test unpack wrong format', () => {
     const format = 20;
 
-    const wrongFormat = (): unknown => JSPack.Unpack(format, new Uint8Array(), JSPackEndianness.bigEndian);
+    const wrongFormat = (): unknown => JSPack.Unpack(format as any, new Uint8Array(), JSPackEndianness.bigEndian);
 
     expect(wrongFormat).toThrow(new Error(`Decode format '${format}' not found.`));
   });

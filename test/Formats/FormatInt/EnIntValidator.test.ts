@@ -35,7 +35,7 @@ describe('EnIntValidator', () => {
   });
 
   test('Wrong format.', () => {
-    const enIntValidator = new EnIntValidator(20);
+    const enIntValidator = new EnIntValidator(20 as any);
 
     const validate = (): void => enIntValidator.validate(20);
 

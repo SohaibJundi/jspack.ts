@@ -87,7 +87,7 @@ describe('EnInt64Validator', () => {
   });
 
   test('Wrong format.', () => {
-    const enInt64Validator = new EnInt64Validator(20);
+    const enInt64Validator = new EnInt64Validator(20 as any);
 
     const validate = (): void => enInt64Validator.validate({
       low: 0x32DEBCD1,
