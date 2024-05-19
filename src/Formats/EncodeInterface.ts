@@ -1,3 +1,3 @@
 export default interface EncodeInterface<T> {
-  encode(data: T): Uint8Array;
+  encode(data: T, offset: number): Uint8Array;
 }

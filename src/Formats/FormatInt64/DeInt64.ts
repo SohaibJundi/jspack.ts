@@ -16,8 +16,9 @@ export default class DeInt64 implements DecodeInterface<JSPackLong> {
     this.endianness = endianness;
   }
 
-  decode(data: Uint8Array): JSPackLong {
-    const start = this.endianness ? 0 : 7;
+  decode(data: Uint8Array, offset = 0): JSPackLong {
+    let start = this.endianness ? 0 : 7;
+    start += offset;
     const nsb = this.endianness ? 1 : -1;
     const stop = start + nsb * 8;
     const result = [0, 0];

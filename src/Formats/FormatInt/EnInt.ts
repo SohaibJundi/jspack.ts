@@ -22,11 +22,12 @@ export default class EnInt implements EncodeInterface<number> {
     this.endianness = endianness;
   }
 
-  encode(data: number): Uint8Array {
+  encode(data: number, offset = 0): Uint8Array {
     this.validator.validate(data);
 
     const arrData: number[] = [];
-    const lsb = this.endianness ? (this.formatLength - 1) : 0;
+    let lsb = this.endianness ? (this.formatLength - 1) : 0;
+    lsb += offset;
     const nsb = this.endianness ? -1 : 1;
     const stop = lsb + nsb * this.formatLength;
 

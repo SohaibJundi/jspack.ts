@@ -15,8 +15,9 @@ export default class DeInt implements DecodeInterface<number> {
     this.endianness = endianness;
   }
 
-  decode(data: Uint8Array): number {
-    const lsb = this.endianness ? (this.formatLength - 1) : 0;
+  decode(data: Uint8Array, offset = 0): number {
+    let lsb = this.endianness ? (this.formatLength - 1) : 0;
+    lsb += offset;
     const nsb = this.endianness ? -1 : 1;
     const stop = lsb + nsb * this.formatLength;
 

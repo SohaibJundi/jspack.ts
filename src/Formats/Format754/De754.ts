@@ -15,7 +15,7 @@ export default class De754 implements DecodeInterface<number> {
     this.endianness = endianness;
   }
 
-  decode(data: Uint8Array): number {
+  decode(data: Uint8Array, offset = 0): number {
     const mLen = this.formatMLen;
     const eLen = this.formatLength * 8 - this.formatMLen - 1;
     // eslint-disable-next-line no-bitwise
@@ -25,6 +25,7 @@ export default class De754 implements DecodeInterface<number> {
     const d = this.endianness ? 1 : -1;
 
     let i = this.endianness ? 0 : (this.formatLength - 1);
+    i += offset;
     let s = data[i];
     let nBits = -7;
     let m: number;

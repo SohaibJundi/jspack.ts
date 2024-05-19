@@ -12,13 +12,14 @@ export default class EnInt64 implements EncodeInterface<JSPackLong> {
     this.endianness = endianness;
   }
 
-  encode(data: JSPackLong): Uint8Array {
+  encode(data: JSPackLong, offset = 0): Uint8Array {
     this.validator.validate(data);
 
     const arrNumber = [data.low, data.high];
     const arrData: number[] = [];
 
-    const start = this.endianness ? 0 : 7;
+    let start = this.endianness ? 0 : 7;
+    start += offset;
     const nsb = this.endianness ? 1 : -1;
     const stop = start + nsb * 8;
 

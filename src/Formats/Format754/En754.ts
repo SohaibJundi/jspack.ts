@@ -22,7 +22,7 @@ export default class En754 implements EncodeInterface<number> {
     this.endianness = endianness;
   }
 
-  encode(data: number): Uint8Array {
+  encode(data: number, offset = 0): Uint8Array {
     this.validator.validate(data);
 
     let v = data;
@@ -30,6 +30,7 @@ export default class En754 implements EncodeInterface<number> {
     let m: number;
     let c: number;
     let i = this.endianness ? (this.formatLength - 1) : 0;
+    i += offset;
     let mLen = this.formatMLen;
     let eLen = this.formatLength * 8 - this.formatMLen - 1;
 
